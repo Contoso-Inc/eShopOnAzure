@@ -78,7 +78,7 @@ var webApp = builder.AddProject<Projects.WebApp>("webapp", launchProfileName)
     .WithReference(appInsights);
 
 // set to true if you want to use OpenAI
-bool useOpenAI = false;
+bool useOpenAI = bool.TryParse(Environment.GetEnvironmentVariable("AI__USE_OPENAI"), out bool useOpenAIValue) ? useOpenAIValue : false;
 if (useOpenAI)
 {
     const string openAIName = "openai";
