@@ -1,3 +1,5 @@
+name: eShop Build, Provision, and Deploy to Azure
+
 on:
   workflow_dispatch:
   push:
@@ -21,7 +23,7 @@ jobs:
       AZURE_ENV_NAME: ${{ vars.AZURE_ENV_NAME }}
       AZURE_LOCATION: ${{ vars.AZURE_LOCATION }}
       AI__USE_OPENAI : ${{ vars.USE_OPENAI }}
-      ConnectionStrings__openai: Endpoint=${{ vars.OPEN }};Key=${{ secrets.OPENKEY }}
+      ConnectionStrings__openai: Endpoint=${{ vars.OPEN_ENDPOINT }};Key=${{ secrets.OPENKEY }}
       AI__OPENAI__EMBEDDINGNAME: ${{ vars.EMBEDDINGNAME }}
       AI__OPENAI__CHATMODEL: ${{ vars.CHATMODEL }}
     steps:
