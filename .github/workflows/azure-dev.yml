@@ -22,10 +22,7 @@ jobs:
       AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
       AZURE_ENV_NAME: ${{ vars.AZURE_ENV_NAME }}
       AZURE_LOCATION: ${{ vars.AZURE_LOCATION }}
-      USEOPENAI : ${{ vars.USE_OPENAI }}
-      ConnectionStrings__openai: Endpoint=${{ vars.OPEN_ENDPOINT }};Key=${{ secrets.OPENKEY }}
-      AI__OPENAI__EMBEDDINGNAME: ${{ vars.EMBEDDINGNAME }}
-      AI__OPENAI__CHATMODEL: ${{ vars.CHATMODEL }}
+      
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -59,6 +56,12 @@ jobs:
 
       - name: Provision Infrastructure
         run: azd provision --no-prompt
+        env:
+           AZD_INITIAL_ENVIRONMENT_CONFIG: ${{ secrets.AZD_INITIAL_ENVIRONMENT_CONFIG }}
+           USEOPENAI : ${{ vars.USE_OPENAI }}
+           ConnectionStrings__openai: Endpoint=${{ vars.OPEN_ENDPOINT }};Key=${{ secrets.OPENKEY }}
+           AI__OPENAI__EMBEDDINGNAME: ${{ vars.EMBEDDINGNAME }}
+           AI__OPENAI__CHATMODEL: ${{ vars.CHATMODEL }}
 
       - name: Deploy Application
         run: azd deploy --no-prompt
