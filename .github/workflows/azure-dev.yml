@@ -27,6 +27,13 @@ jobs:
       AI__OPENAI__EMBEDDINGNAME: ${{ vars.EMBEDDINGNAME }}
       AI__OPENAI__CHATMODEL: ${{ vars.CHATMODEL }}
     steps:
+        
+      - name: Iterate and Echo Environment Variables
+        run: |
+            for var in $(env | awk -F= '{print $1}'); do
+                echo "$var=${!var}"
+            done
+
       - name: Checkout
         uses: actions/checkout@v4
 
