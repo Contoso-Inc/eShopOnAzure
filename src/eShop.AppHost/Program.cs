@@ -78,12 +78,12 @@ var webApp = builder.AddProject<Projects.WebApp>("webapp", launchProfileName)
     .WithReference(appInsights);
 
 // set to true if you want to use OpenAI
-bool useOpenAI = Convert.ToBoolean(builder.Configuration["USEOPENAI"]);
+bool useOpenAI = true;
 if (useOpenAI)
 {
     const string openAIName = "openai";
-    const string textEmbeddingName = "text-embedding-ada-002";
-    const string chatModelName = "gpt-35-turbo-16k";
+    const string textEmbeddingName = "shboyer-text-emdedding-ada-002";
+    const string chatModelName = "shboyer-gpt35deployment";
 
     // to use an existing OpenAI resource, add the following to the AppHost user secrets:
     // "ConnectionStrings": {
