@@ -62,6 +62,6 @@ jobs:
            ConnectionStrings__openai: Endpoint=${{ vars.OPEN_ENDPOINT }};Key=${{ secrets.OPENKEY }}
            AI__OPENAI__EMBEDDINGNAME: ${{ vars.EMBEDDINGNAME }}
            AI__OPENAI__CHATMODEL: ${{ vars.CHATMODEL }}
-
+           OPENAI_CONNECTIONSTRING: Endpoint=${{ vars.OPEN_ENDPOINT }};Key=${{ secrets.OPENKEY }}
       - name: Deploy Application
         run: azd deploy --no-prompt
