@@ -61,5 +61,6 @@ jobs:
            AI__OPENAI__EMBEDDINGNAME: ${{ vars.EMBEDDINGNAME }}
            AI__OPENAI__CHATMODEL: ${{ vars.CHATMODEL }}
            AZURE_OPENAI: Endpoint=${{ vars.OPEN_ENDPOINT }};Key=${{ secrets.OPENKEY }}
+           ConnectionStrings__OpenAi: Endpoint=${{ vars.OPEN_ENDPOINT }};Key=${{ secrets.OPENKEY }}
       - name: Deploy Application
         run: azd deploy --no-prompt
