@@ -54,15 +54,19 @@ jobs:
             --tenant-id "$($info.tenantId)"
         shell: pwsh
 
+      - name: Set azd ENV
+        run: azd env set OPENAI_CONNECTIONSTRING ${{ AZURE_OPENAI }}
+        env:
+          AZURE_OPENAI: Endpoint=${{ vars.OPEN_ENDPOINT }};Key=${{ secrets.OPENKEY }} 
+
       - name: Provision Infrastructure
         run: azd provision --no-prompt
         env:
-           AZD_INITIAL_ENVIRONMENT_CONFIG: ${{ secrets.AZD_INITIAL_ENVIRONMENT_CONFIG }}
-           AI__OPENAI__EMBEDDINGNAME: ${{ vars.EMBEDDINGNAME }}
-           AI__OPENAI__CHATMODEL: ${{ vars.CHATMODEL }}
-           AZURE_OPENAI: Endpoint=${{ vars.OPEN_ENDPOINT }};Key=${{ secrets.OPENKEY }}
-           AZURE_OPENAI_CONNECTIONSTRING: Endpoint=${{ vars.OPEN_ENDPOINT }};Key=${{ secrets.OPENKEY }}
-           OPENAI_CONNECTIONSTRING: Endpoint=${{ vars.OPEN_ENDPOINT }};Key=${{ secrets.OPENKEY }}
-           ConnectionStrings__OpenAi: Endpoint=${{ vars.OPEN_ENDPOINT }};Key=${{ secrets.OPENKEY }}
+           #AZD_INITIAL_ENVIRONMENT_CONFIG: ${{ secrets.AZD_INITIAL_ENVIRONMENT_CONFIG }}
+           #AZURE_OPENAI: Endpoint=${{ vars.OPEN_ENDPOINT }};Key=${{ secrets.OPENKEY }}
+           ConnectionStrings__OpenAi: ${{ AZURE_OPENAI }}
+
       - name: Deploy Application
-        run: azd deploy --no-prompt
+        run: | 
+            azd env set OPENAI_CONNECTIONSTRING ${{ vars.AZURE_ENV_NAME }}
+            azd deploy --no-prompt
