@@ -56,7 +56,7 @@ jobs:
         shell: pwsh
 
       - name: Set azd ENV
-        run: azd env set OPENAI_CONNECTIONSTRING ${{ env.AZURE_OPENAI }}
+        run: azd env set OPENAI_CONNECTIONSTRING ${{ env.AZURE_OPENAI }} --no-prompt
         
 
       - name: Provision Infrastructure
