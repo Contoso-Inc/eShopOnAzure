@@ -57,7 +57,7 @@ jobs:
 
       - name: Set azd ENV
         run: |
-            azd env refresh
+            azd env new ${{ vars.AZURE_ENV_NAME }} --location ${{ vars.AZURE_LOCATION }} --subscription ${{ vars.AZURE_SUBSCRIPTION_ID }} --no-prompt
             azd env set OPENAI_CONNECTIONSTRING ${{ env.AZURE_OPENAI }} --no-prompt
         
 
