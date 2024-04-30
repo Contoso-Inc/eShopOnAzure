@@ -17,7 +17,6 @@
 
   <ItemGroup>
     <PackageReference Include="Aspire.Azure.AI.OpenAI" />
-    <PackageReference Include="Microsoft.ApplicationInsights.Profiler.AspNetCore" />
     <PackageReference Include="Microsoft.Extensions.ServiceDiscovery.Yarp" />
     <PackageReference Include="Microsoft.SemanticKernel" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" />
