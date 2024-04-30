@@ -9,6 +9,10 @@ builder.Services.AddRazorComponents().AddInteractiveServerComponents();
 
 builder.AddApplicationServices();
 
+//temporary workaround for AppInsights Profiler
+builder.Services.AddApplicationInsightsTelemetry();
+builder.Services.AddServiceProfiler();
+
 var app = builder.Build();
 
 app.MapDefaultEndpoints();
