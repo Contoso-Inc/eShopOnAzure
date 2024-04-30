@@ -22,7 +22,7 @@ jobs:
       AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
       AZURE_ENV_NAME: ${{ vars.AZURE_ENV_NAME }}
       AZURE_LOCATION: ${{ vars.AZURE_LOCATION }}
-      AZURE_OPENAI: Endpoint=${{ vars.OPEN_ENDPOINT }};Key=${{ secrets.OPENKEY }}
+      AZURE_OPENAI: "Endpoint=${{ vars.OPEN_ENDPOINT }};Key=${{ secrets.OPENKEY }}"
       
     steps:
       - name: Checkout
@@ -65,10 +65,9 @@ jobs:
         run: azd provision --no-prompt
         env:
            #AZD_INITIAL_ENVIRONMENT_CONFIG: ${{ secrets.AZD_INITIAL_ENVIRONMENT_CONFIG }}
-           #AZURE_OPENAI: Endpoint=${{ vars.OPEN_ENDPOINT }};Key=${{ secrets.OPENKEY }}
-           ConnectionStrings__OpenAi: ${{ env.AZURE_OPENAI }}
+           ConnectionStrings__OpenAi: "${{ env.AZURE_OPENAI }}"
 
       - name: Deploy Application
         run: | 
-            azd env set OPENAI_CONNECTIONSTRING ${{ env.AZURE_OPENAI }}
+            azd env set OPENAI_CONNECTIONSTRING "${{ env.AZURE_OPENAI }}" --no-prompt
             azd deploy --no-prompt
